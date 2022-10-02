@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public GameManager.ItemType itemType;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        LeanTween.moveY(gameObject, transform.position.y + Random.Range(-1f, 1f), Random.Range(1f, 3f)).setEase(LeanTweenType.easeInOutCubic).setLoopPingPong();
+        //LeanTween.moveX(gameObject, transform.position.x + Random.Range(0.01f, 1f), Random.Range(1f, 3f)).setEase(LeanTweenType.easeInOutCubic).setLoopPingPong();
+        LeanTween.rotateZ(gameObject, Random.Range(-10, 10), 1f).setEaseInCubic().setLoopPingPong();
     }
 
     // Update is called once per frame
@@ -15,4 +19,19 @@ public class Item : MonoBehaviour
     {
         
     }
+
+    public void ClickItem()
+    {
+        if (GameManager.instance.itemType == itemType)
+        {
+            GameManager.instance.CollectItem();
+            Debug.Log("True");
+        }
+        else
+        {
+            GameManager.instance.ShakeCamera(0.1f, 0.05f);
+        }
+    }
+
+
 }

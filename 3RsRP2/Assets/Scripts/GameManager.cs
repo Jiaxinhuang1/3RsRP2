@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameManager.Difficulty difficultyState;
     public GameManager.ItemType itemType;
     public static GameManager instance;
+    public CameraShake cameraScript;
 
     [Header("Track Slider Experience")]
     public Slider trashSlider;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     public GameObject titlePanel;
     public GameObject typeText;
 
-    public GameObject Spawner;
+    public GameObject spawner;
 
 
     private void Awake()
@@ -66,10 +67,12 @@ public class GameManager : MonoBehaviour
         {
             LeanTween.moveY(typeText, 1000, 1f);
             LeanTween.scale(typeText, new Vector3(0.5f, 0.5f, 0.5f), 1f).setOnComplete(() => {
-                Spawner.SetActive(true); 
+                spawner.SetActive(true); 
             });
         });
-
+        trashLevel = PlayerPrefs.GetInt("TrashLevel", 0);
+        compostLevel = PlayerPrefs.GetInt("CompostLevel", 0);
+        recycleLevel = PlayerPrefs.GetInt("RecycleLevel", 0);
     }
 
     // Update is called once per frame
@@ -78,6 +81,9 @@ public class GameManager : MonoBehaviour
         trashSlider.value = trashCount;
         compostSlider.value = compostCount;
         recycleSlider.value = recycleCount;
+        trashLevelText.text = trashLevel.ToString();
+        compostLevelText.text = compostLevel.ToString();
+        recycleLevelText.text = recycleLevel.ToString();
     }
 
     public void ChangeDifficulty()
@@ -112,12 +118,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CollectItem()
+    {
+        if (itemType == ItemType.Trash)
+        {
+            CollectTrash();
+        }
+        else if (itemType == ItemType.Compost)
+        {
+            CollectCompost();
+        }
+        else if (itemType == ItemType.Recycle)
+        {
+            CollectRecycle();
+        }
+    }
     public void CollectTrash()
     {
         trashCount++;
         if (trashCount >= trashSlider.maxValue)
         {
             trashLevel++;
+            PlayerPrefs.SetInt("TrashLevel", trashLevel);
+            NextLevel();
             trashCount = 0;
         }
     }
@@ -128,6 +151,8 @@ public class GameManager : MonoBehaviour
         if (compostCount >= compostSlider.maxValue)
         {
             compostLevel++;
+            PlayerPrefs.SetInt("CompostLevel", compostLevel);
+            NextLevel();
             compostCount = 0;
         }
     }
@@ -138,6 +163,8 @@ public class GameManager : MonoBehaviour
         if (recycleCount >= compostSlider.maxValue)
         {
             recycleLevel++;
+            PlayerPrefs.SetInt("RecycleLevel", recycleLevel);
+            NextLevel();
             recycleCount = 0;
         }
     }
@@ -146,10 +173,12 @@ public class GameManager : MonoBehaviour
     {
         StopAllCoroutines();
         levelCompletePanel.SetActive(true);
+        spawner.SetActive(false);
     }
 
-    public void UpdateErrorCount()
+    public void IncreaseErrorCount()
     {
+        errorCount++;
         for (int i = 0; i < errorCount; i++)
         {
             dead[i].SetActive(true);
@@ -157,6 +186,7 @@ public class GameManager : MonoBehaviour
         if (errorCount == dead.Length - 1)
         {
             losePanel.SetActive(true);
+            spawner.SetActive(false);
             Debug.Log("You Lost");
         }
     }
@@ -178,5 +208,22 @@ public class GameManager : MonoBehaviour
         {
             itemType = 0;
         }
+    }
+
+    public void ShakeCamera(float duration, float magnitude)
+    {
+        StartCoroutine(cameraScript.Shake(duration, magnitude));
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    [ContextMenu("Reset PlayerPrefs")]
+
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
