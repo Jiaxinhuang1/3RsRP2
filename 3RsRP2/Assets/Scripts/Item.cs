@@ -25,11 +25,16 @@ public class Item : MonoBehaviour
         if (GameManager.instance.itemType == itemType)
         {
             GameManager.instance.CollectItem();
-            Debug.Log("True");
+            LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.3f).setDestroyOnComplete(true);
+            Instantiate(Resources.Load("Collect"), transform.position, transform.rotation);
         }
         else
         {
             GameManager.instance.ShakeCamera(0.1f, 0.05f);
+            GameManager.instance.IncreaseErrorCount();
+            LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.3f).setDestroyOnComplete(true);
+            Instantiate(Resources.Load("Destroy"), transform.position, transform.rotation);
+            
         }
     }
 

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public enum Difficulty { Easy, Medium, Hard }
     public enum ItemType { Trash, Compost, Recycle }
+    public int itemLevel;
     public GameManager.Difficulty difficultyState;
     public GameManager.ItemType itemType;
     public static GameManager instance;
@@ -58,6 +59,25 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        trashLevel = PlayerPrefs.GetInt("TrashLevel", 0);
+        compostLevel = PlayerPrefs.GetInt("CompostLevel", 0);
+        recycleLevel = PlayerPrefs.GetInt("RecycleLevel", 0);
+        itemLevel = PlayerPrefs.GetInt("ItemLevel", 1);
+        Debug.Log(itemLevel);
+
+        if (itemLevel == 1)
+        {
+            itemType = ItemType.Trash;
+        }
+        else if (itemLevel == 2)
+        {
+            itemType = ItemType.Compost;
+        }
+        else if (itemLevel == 3)
+        {
+            itemType = ItemType.Recycle;
+        }
+
         typeText.GetComponentInChildren<TextMeshProUGUI>().text = itemType.ToString();
         var seq = LeanTween.sequence();
         seq.append(LeanTween.alpha(titlePanel.GetComponent<RectTransform>(), 0.75f, 0.5f));
@@ -67,12 +87,9 @@ public class GameManager : MonoBehaviour
         {
             LeanTween.moveY(typeText, 1000, 1f);
             LeanTween.scale(typeText, new Vector3(0.5f, 0.5f, 0.5f), 1f).setOnComplete(() => {
-                spawner.SetActive(true); 
+                spawner.SetActive(true);
             });
         });
-        trashLevel = PlayerPrefs.GetInt("TrashLevel", 0);
-        compostLevel = PlayerPrefs.GetInt("CompostLevel", 0);
-        recycleLevel = PlayerPrefs.GetInt("RecycleLevel", 0);
     }
 
     // Update is called once per frame
@@ -183,7 +200,7 @@ public class GameManager : MonoBehaviour
         {
             dead[i].SetActive(true);
         }
-        if (errorCount == dead.Length - 1)
+        if (errorCount == dead.Length)
         {
             losePanel.SetActive(true);
             spawner.SetActive(false);
@@ -203,11 +220,12 @@ public class GameManager : MonoBehaviour
 
     public void NextCategory()
     {
-        itemType++;
-        if ((int)itemType == 3)
+        itemLevel++;
+        if (itemLevel == 4)
         {
-            itemType = 0;
+            itemLevel = 1;
         }
+        PlayerPrefs.SetInt("ItemLevel", itemLevel);
     }
 
     public void ShakeCamera(float duration, float magnitude)
