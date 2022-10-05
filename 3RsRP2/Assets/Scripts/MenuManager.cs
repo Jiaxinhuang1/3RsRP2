@@ -56,7 +56,11 @@ public class MenuManager : MonoBehaviour
 
     public void NewGame()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("ItemLevel", 1);
+        PlayerPrefs.SetInt("TrashLevel", 0);
+        PlayerPrefs.SetInt("RecycleLevel", 0);
+        PlayerPrefs.SetInt("CompostLevel", 0);
     }
 
     public void ChangeLanguage(string lang)
