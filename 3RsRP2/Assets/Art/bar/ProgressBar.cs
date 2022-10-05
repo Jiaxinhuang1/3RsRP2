@@ -19,6 +19,14 @@ public class ProgressBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (current > maximum)
+        {
+            current = maximum;
+        }
+        else if (current < 0)
+        {
+            current = 0;
+        }
         GetCurrentFill();
     }
     void GetCurrentFill()

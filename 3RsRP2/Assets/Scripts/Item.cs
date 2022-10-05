@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
         }
         else
         {
-            GameManager.instance.ShakeCamera(0.1f, 0.05f);
+            GameManager.instance.ShakeCamera(0.1f, 0.1f);
             GameManager.instance.IncreaseErrorCount();
             LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.3f).setDestroyOnComplete(true);
             Instantiate(Resources.Load("Destroy"), transform.position, transform.rotation);

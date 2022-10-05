@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
     public CameraShake cameraScript;
 
     [Header("Track Slider Experience")]
-    public Slider trashSlider;
-    public Slider compostSlider;
-    public Slider recycleSlider;
+    public ProgressBar trashSlider;
+    public ProgressBar compostSlider;
+    public ProgressBar recycleSlider;
     public int trashCount;
     public int compostCount;
     public int recycleCount;
@@ -95,9 +95,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        trashSlider.value = trashCount;
-        compostSlider.value = compostCount;
-        recycleSlider.value = recycleCount;
+        trashSlider.current = trashCount;
+        compostSlider.current = compostCount;
+        recycleSlider.current = recycleCount;
         trashLevelText.text = trashLevel.ToString();
         compostLevelText.text = compostLevel.ToString();
         recycleLevelText.text = recycleLevel.ToString();
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
     public void CollectTrash()
     {
         trashCount++;
-        if (trashCount >= trashSlider.maxValue)
+        if (trashCount >= trashSlider.maximum)
         {
             trashLevel++;
             PlayerPrefs.SetInt("TrashLevel", trashLevel);
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
     public void CollectCompost()
     {
         compostCount++;
-        if (compostCount >= compostSlider.maxValue)
+        if (compostCount >= compostSlider.maximum)
         {
             compostLevel++;
             PlayerPrefs.SetInt("CompostLevel", compostLevel);
@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
     public void CollectRecycle()
     {
         recycleCount++;
-        if (recycleCount >= compostSlider.maxValue)
+        if (recycleCount >= compostSlider.maximum)
         {
             recycleLevel++;
             PlayerPrefs.SetInt("RecycleLevel", recycleLevel);
