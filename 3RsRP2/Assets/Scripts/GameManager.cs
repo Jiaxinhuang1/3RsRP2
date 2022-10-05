@@ -40,9 +40,10 @@ public class GameManager : MonoBehaviour
     public GameObject levelCompletePanel;
     public GameObject losePanel;
     public GameObject titlePanel;
-    public GameObject typeText;
+    public GameObject typeLabel;
 
     public GameObject spawner;
+    public LevelSO levelSo;
 
 
     private void Awake()
@@ -77,16 +78,24 @@ public class GameManager : MonoBehaviour
         {
             itemType = ItemType.Recycle;
         }
-
-        typeText.GetComponentInChildren<TextMeshProUGUI>().text = itemType.ToString();
+        
+        if(PlayerPrefs.GetString("Lang") == "Chinese")
+        {
+            //typeLabel.GetComponentInChildren<TextMeshProUGUI>().text = itemType.ToString();
+            typeLabel.GetComponentInChildren<Image>().sprite = levelSo.langSprite[1].levels[itemLevel - 1];
+        }
+        else
+        {
+            typeLabel.GetComponentInChildren<Image>().sprite = levelSo.langSprite[0].levels[itemLevel - 1];
+        }
         var seq = LeanTween.sequence();
         seq.append(LeanTween.alpha(titlePanel.GetComponent<RectTransform>(), 0.75f, 0.5f));
-        seq.append(LeanTween.moveX(typeText, 1000, 1f));
+        seq.append(LeanTween.moveX(typeLabel, 1000, 1f));
         seq.append(LeanTween.alpha(titlePanel.GetComponent<RectTransform>(), 0f, 1f).setDestroyOnComplete(true));
         seq.append(() =>
         {
-            LeanTween.moveY(typeText, 1000, 1f);
-            LeanTween.scale(typeText, new Vector3(0.5f, 0.5f, 0.5f), 1f).setOnComplete(() => {
+            LeanTween.moveY(typeLabel, 1000, 0.5f);
+            LeanTween.scale(typeLabel, new Vector3(0.5f, 0.5f, 0.5f), 0.5f).setOnComplete(() => {
                 spawner.SetActive(true);
             });
         });
