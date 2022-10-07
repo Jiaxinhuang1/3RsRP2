@@ -90,11 +90,11 @@ public class GameManager : MonoBehaviour
         }
         var seq = LeanTween.sequence();
         seq.append(LeanTween.alpha(titlePanel.GetComponent<RectTransform>(), 0.75f, 0.5f));
-        seq.append(LeanTween.moveX(typeLabel, 1000, 1f));
+        seq.append(LeanTween.moveX(typeLabel.GetComponent<RectTransform>(), 0, 1f));
         seq.append(LeanTween.alpha(titlePanel.GetComponent<RectTransform>(), 0f, 1f).setDestroyOnComplete(true));
         seq.append(() =>
         {
-            LeanTween.moveY(typeLabel, 1000, 0.5f);
+            LeanTween.moveY(typeLabel.GetComponent<RectTransform>(), -125, 0.5f);
             LeanTween.scale(typeLabel, new Vector3(0.5f, 0.5f, 0.5f), 0.5f).setOnComplete(() => {
                 spawner.SetActive(true);
             });
