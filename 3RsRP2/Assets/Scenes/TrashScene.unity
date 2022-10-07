@@ -974,22 +974,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnedItems:
-  - {fileID: 1327655109746192391, guid: ef45f037173f81c47893daf367b7b772, type: 3}
-  - {fileID: 4081650934430439901, guid: 7a1b0d7d7105ee948a4b86d853d06ce5, type: 3}
-  - {fileID: 9057046970494076313, guid: 7e85a8ceb9e796447a8c6e9073cfdbe4, type: 3}
-  - {fileID: 2144331522033838744, guid: 1b8e22ebdf08b2e49a2bcfc076f0d9dd, type: 3}
-  - {fileID: 3019843348890440310, guid: 3c072f0ec237b6048b792639c3eda07c, type: 3}
-  - {fileID: 459550796099904173, guid: 1761aefdc0859fc409c65493f16574d5, type: 3}
-  - {fileID: 8924934649187903048, guid: 12e3a0d8258d10c4aa16457f13d143fc, type: 3}
-  - {fileID: 3676804084713115160, guid: 855ff82f3b53b6642b6dec7a3e39245c, type: 3}
-  - {fileID: 3618864343116438017, guid: 90087011970c5d9428dd69a203f862b5, type: 3}
-  - {fileID: 971565719408204902, guid: 1d778e9d2de250f489be944b552e4134, type: 3}
-  - {fileID: 1660275215228470413, guid: fd79812fcff7df246b9fc4cf418d2789, type: 3}
-  - {fileID: 5318066613928277113, guid: b9faeab880643144298387204f2d41fd, type: 3}
-  - {fileID: 3492178900007139156, guid: daf8be94b76e52f498ebcee593d3d2d4, type: 3}
-  - {fileID: 2469283933045795469, guid: 54698ac4c00ba8f45b63bc93cae3885e, type: 3}
   - {fileID: 7978318590006640061, guid: 125555abefee0484aaaef84d9b97221c, type: 3}
-  timeToSpawn: 1
+  - {fileID: 971565719408204902, guid: 1d778e9d2de250f489be944b552e4134, type: 3}
+  - {fileID: 3019843348890440310, guid: 3c072f0ec237b6048b792639c3eda07c, type: 3}
+  - {fileID: 1660275215228470413, guid: fd79812fcff7df246b9fc4cf418d2789, type: 3}
+  - {fileID: 459550796099904173, guid: 1761aefdc0859fc409c65493f16574d5, type: 3}
+  - {fileID: 1327655109746192391, guid: ef45f037173f81c47893daf367b7b772, type: 3}
+  - {fileID: 5318066613928277113, guid: b9faeab880643144298387204f2d41fd, type: 3}
+  - {fileID: 8924934649187903048, guid: 12e3a0d8258d10c4aa16457f13d143fc, type: 3}
+  - {fileID: 4081650934430439901, guid: 7a1b0d7d7105ee948a4b86d853d06ce5, type: 3}
+  - {fileID: 3492178900007139156, guid: daf8be94b76e52f498ebcee593d3d2d4, type: 3}
+  - {fileID: 3676804084713115160, guid: 855ff82f3b53b6642b6dec7a3e39245c, type: 3}
+  - {fileID: 9057046970494076313, guid: 7e85a8ceb9e796447a8c6e9073cfdbe4, type: 3}
+  - {fileID: 2469283933045795469, guid: 54698ac4c00ba8f45b63bc93cae3885e, type: 3}
+  - {fileID: 3618864343116438017, guid: 90087011970c5d9428dd69a203f862b5, type: 3}
+  - {fileID: 2144331522033838744, guid: 1b8e22ebdf08b2e49a2bcfc076f0d9dd, type: 3}
 --- !u!4 &286932431
 Transform:
   m_ObjectHideFlags: 0
@@ -1159,7 +1158,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0.3
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1461,7 +1460,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0.3
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1541,7 +1540,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd23347ffa1a2cb46baaa23f6eb7cdd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRange: 0
+  maxExperience: 0
+  minSpawnSpeed: 0
   itemLevel: 0
+  difficultyLevel: 0
   difficultyState: 0
   itemType: 0
   cameraScript: {fileID: 175609529}
@@ -2269,7 +2272,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0.3
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2766,7 +2769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximum: 10
-  current: 10
+  current: 3
   mask: {fileID: 1090414694}
 --- !u!114 &1337923171
 MonoBehaviour:
@@ -3131,7 +3134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximum: 10
-  current: 10
+  current: 3
   mask: {fileID: 340244140}
 --- !u!114 &1497901222
 MonoBehaviour:
@@ -3939,7 +3942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximum: 10
-  current: 10
+  current: 3
   mask: {fileID: 597616633}
 --- !u!114 &1748287199
 MonoBehaviour:

@@ -61,6 +61,7 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetInt("TrashLevel", 0);
         PlayerPrefs.SetInt("RecycleLevel", 0);
         PlayerPrefs.SetInt("CompostLevel", 0);
+        PlayerPrefs.SetInt("DifficultyLevel", 1);
     }
 
     public void ChangeLanguage(string lang)

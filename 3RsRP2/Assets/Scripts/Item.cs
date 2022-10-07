@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
 
     public void ClickItem()
     {
-        Debug.Log("Clicked");
+        //Debug.Log("Clicked");
         if (!isClicked)
         {
             if (GameManager.instance.itemType == itemType)

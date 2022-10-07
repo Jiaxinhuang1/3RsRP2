@@ -10,7 +10,11 @@ public class GameManager : MonoBehaviour
 {
     public enum Difficulty { Easy, Medium, Hard }
     public enum ItemType { Trash, Compost, Recycle }
+    public int maxRange;
+    public int maxExperience;
+    public float minSpawnSpeed;
     public int itemLevel;
+    public int difficultyLevel;
     public GameManager.Difficulty difficultyState;
     public GameManager.ItemType itemType;
     public static GameManager instance;
@@ -66,6 +70,9 @@ public class GameManager : MonoBehaviour
         itemLevel = PlayerPrefs.GetInt("ItemLevel", 1);
         Debug.Log(itemLevel);
 
+        difficultyLevel = PlayerPrefs.GetInt("DifficultyLevel", 1);
+        ChangeDifficulty();
+
         if (itemLevel == 1)
         {
             itemType = ItemType.Trash;
@@ -114,16 +121,46 @@ public class GameManager : MonoBehaviour
 
     public void ChangeDifficulty()
     {
+        if (difficultyLevel == 1)
+        {
+            difficultyState = Difficulty.Easy;
+        }
+        else if (difficultyLevel == 2)
+        {
+            difficultyState = Difficulty.Medium;
+        }
+        else if(difficultyLevel == 3)
+        {
+            difficultyState = Difficulty.Hard;
+        }
         switch (difficultyState)
         {
             case Difficulty.Easy:
+                minSpawnSpeed = 1f;
+                maxRange = 5;
+                maxExperience = 3;
                 Debug.Log("Easy Level");
+                Debug.Log("Spawn Speed: " + minSpawnSpeed);
+                Debug.Log("Item Range: " + maxRange);
+                Debug.Log("Max Experience: " + maxExperience);
                 break;
             case Difficulty.Medium:
+                minSpawnSpeed = 0.5f;
+                maxRange = 10;
+                maxExperience = 5;
                 Debug.Log("Medium Level");
+                Debug.Log("Spawn Speed: " + minSpawnSpeed);
+                Debug.Log("Item Range: " + maxRange);
+                Debug.Log("Max Experience: " + maxExperience); 
                 break;
             case Difficulty.Hard:
+                minSpawnSpeed = 0.2f;
+                maxRange = 15;
+                maxExperience = 10;
                 Debug.Log("Hard Level");
+                Debug.Log("Spawn Speed: " + minSpawnSpeed);
+                Debug.Log("Item Range: " + maxRange);
+                Debug.Log("Max Experience: " + maxExperience); 
                 break;
         }
     }
@@ -235,6 +272,22 @@ public class GameManager : MonoBehaviour
             itemLevel = 1;
         }
         PlayerPrefs.SetInt("ItemLevel", itemLevel);
+        NextDifficulty();
+    }
+
+    public void NextDifficulty()
+    {
+        if (trashLevel > 10)
+        {
+            difficultyLevel = 3;
+            ChangeDifficulty();
+        }
+        else if (trashLevel > 4)
+        {
+            difficultyLevel = 2;
+            ChangeDifficulty();
+        }
+        PlayerPrefs.SetInt("DifficultyLevel", difficultyLevel);
     }
 
     public void ShakeCamera(float duration, float magnitude)
