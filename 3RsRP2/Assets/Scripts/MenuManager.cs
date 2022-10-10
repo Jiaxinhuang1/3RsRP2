@@ -13,6 +13,9 @@ public class MenuManager : MonoBehaviour
     public GameObject englishButton;
     public GameObject chineseButton;
 
+    [Header("Audio")]
+    public AudioSource menuOpenSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +45,13 @@ public class MenuManager : MonoBehaviour
     public void OpenPanel(GameObject go)
     {
         LeanTween.scale(go, new Vector3(1, 1, 1), 0.2f);
+        menuOpenSound.Play();
     }
 
     public void ClosePanel(GameObject go)
     {
         LeanTween.scale(go, new Vector3(1, 0, 1), 0.2f);
+        menuOpenSound.Play();
     }
 
     public void LoadScene(string sceneName)
