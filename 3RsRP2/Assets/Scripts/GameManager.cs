@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
     public GameObject spawner;
     public LevelSO levelSo;
 
+    [Header("Audio")]
+    public AudioSource levelCompleteSound;
+    public AudioSource levelFailedSound;
+    public AudioSource menuOpenSound;
+    public AudioSource explosionSound;
+    public AudioSource correctSound;
 
     private void Awake()
     {
@@ -183,6 +189,7 @@ public class GameManager : MonoBehaviour
 
     public void CollectItem()
     {
+        correctSound.Play();
         if (itemType == ItemType.Trash)
         {
             CollectTrash();
@@ -234,8 +241,10 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        levelCompleteSound.Play();
         StopAllCoroutines();
-        levelCompletePanel.SetActive(true);
+        //levelCompletePanel.SetActive(true);
+        OpenPanel(levelCompletePanel);
         spawner.SetActive(false);
     }
 
@@ -244,11 +253,14 @@ public class GameManager : MonoBehaviour
         errorCount++;
         for (int i = 0; i < errorCount; i++)
         {
+            explosionSound.Play();
             dead[i].SetActive(true);
         }
         if (errorCount == dead.Length)
         {
-            losePanel.SetActive(true);
+            levelFailedSound.Play();
+            //losePanel.SetActive(true);
+            OpenPanel(losePanel);
             spawner.SetActive(false);
             Debug.Log("You Lost");
         }
@@ -288,6 +300,16 @@ public class GameManager : MonoBehaviour
             ChangeDifficulty();
         }
         PlayerPrefs.SetInt("DifficultyLevel", difficultyLevel);
+    }
+
+    public void OpenPanel(GameObject go)
+    {
+        LeanTween.scale(go, new Vector3(1, 1, 1), 0.2f);
+    }
+
+    public void ClosePanel(GameObject go)
+    {
+        LeanTween.scale(go, new Vector3(1, 0, 1), 0.2f);
     }
 
     public void ShakeCamera(float duration, float magnitude)
