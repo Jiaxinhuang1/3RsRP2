@@ -13,6 +13,7 @@ public class LevelSO : ScriptableObject
     public class LangSprite
     {
         public Sprite[] levels;
+        public Sprite[] endLevels;
     }
 
     [Serializable]

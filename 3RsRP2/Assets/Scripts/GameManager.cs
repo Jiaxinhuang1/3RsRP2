@@ -44,10 +44,13 @@ public class GameManager : MonoBehaviour
     public GameObject levelCompletePanel;
     public GameObject losePanel;
     public GameObject typeLabel;
+    public GameObject loseEndLabel;
+    public GameObject finalLabel;
     public GameObject pausePanel;
 
     public GameObject spawner;
     public GameObject LevelItems;
+    public GameObject LevelItems2;
     public LevelSO levelSo;
 
     [Header("Audio")]
@@ -272,6 +275,15 @@ public class GameManager : MonoBehaviour
         levelCompleteSound.Play();
         StopAllCoroutines();
         //levelCompletePanel.SetActive(true);
+        if (PlayerPrefs.GetString("Lang") == "Chinese")
+        {
+            //typeLabel.GetComponentInChildren<TextMeshProUGUI>().text = itemType.ToString();
+            finalLabel.transform.GetChild(0).GetComponent<Image>().sprite = levelSo.langSprite[1].endLevels[itemLevel - 1];
+        }
+        else
+        {
+            finalLabel.transform.GetChild(0).GetComponent<Image>().sprite = levelSo.langSprite[0].endLevels[itemLevel - 1];
+        }
         for (int i = 0; i < LevelItems.transform.childCount; i++)
         {
             LevelItems.transform.GetChild(i).GetComponent<Image>().sprite = levelSo.levelSprites[itemLevel - 1].types[i];
@@ -292,6 +304,18 @@ public class GameManager : MonoBehaviour
         {
             levelFailedSound.Play();
             //losePanel.SetActive(true);
+            if (PlayerPrefs.GetString("Lang") == "Chinese")
+            {
+                loseEndLabel.transform.GetChild(0).GetComponent<Image>().sprite = levelSo.langSprite[1].endLevels[itemLevel - 1];
+            }
+            else
+            {
+                loseEndLabel.transform.GetChild(0).GetComponent<Image>().sprite = levelSo.langSprite[0].endLevels[itemLevel - 1];
+            }
+            for (int i = 0; i < LevelItems.transform.childCount; i++)
+            {
+                LevelItems2.transform.GetChild(i).GetComponent<Image>().sprite = levelSo.levelSprites[itemLevel - 1].types[i];
+            }
             OpenPanel(losePanel);
             spawner.SetActive(false);
             Debug.Log("You Lost");

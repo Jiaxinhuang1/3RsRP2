@@ -17,10 +17,18 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 9762eec6711496a408fd7d4aadbad961, type: 3}
     - {fileID: 21300000, guid: 2d9abd6653f0e444f89bc2e206265550, type: 3}
     - {fileID: 21300000, guid: aac4d545a49b4e1428df2276abd51fc7, type: 3}
+    endLevels:
+    - {fileID: 21300000, guid: 7af9624c652d5c6468db1282f9a4abfa, type: 3}
+    - {fileID: 21300000, guid: b1e49f0c1fc01794e8c7bea707bd5fa6, type: 3}
+    - {fileID: 21300000, guid: 75769bd13530f2248a5496268911573a, type: 3}
   - levels:
     - {fileID: 21300000, guid: 3d54af31eb37ba248a11072509b8a9c0, type: 3}
     - {fileID: 21300000, guid: ef4887cbecb030940895d9e039b93b1c, type: 3}
     - {fileID: 21300000, guid: 5ac6a3c9d98d0be4fbad6dce42497d3e, type: 3}
+    endLevels:
+    - {fileID: 21300000, guid: 30f222b6e86526144bc3e13512be39e6, type: 3}
+    - {fileID: 21300000, guid: a1ed854fac0f9c94d9f49d629e45a953, type: 3}
+    - {fileID: 21300000, guid: 61996c963661c984a8c7d3397d21baf0, type: 3}
   levelSprites:
   - types:
     - {fileID: 97473628, guid: 9df21e39f3f222c449c80ed3177b32b7, type: 3}
