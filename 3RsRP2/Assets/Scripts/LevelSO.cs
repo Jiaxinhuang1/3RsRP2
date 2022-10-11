@@ -7,10 +7,17 @@ using System;
 public class LevelSO : ScriptableObject
 {
     public LangSprite[] langSprite;
+    public CompleteSprites[] levelSprites;
 
     [Serializable]
     public class LangSprite
     {
         public Sprite[] levels;
+    }
+
+    [Serializable]
+    public class CompleteSprites
+    {
+        public Sprite[] types;
     }
 }

@@ -43,10 +43,11 @@ public class GameManager : MonoBehaviour
     [Header("Panels")]
     public GameObject levelCompletePanel;
     public GameObject losePanel;
-    public GameObject titlePanel;
     public GameObject typeLabel;
+    public GameObject pausePanel;
 
     public GameObject spawner;
+    public GameObject LevelItems;
     public LevelSO levelSo;
 
     [Header("Audio")]
@@ -95,20 +96,20 @@ public class GameManager : MonoBehaviour
         if(PlayerPrefs.GetString("Lang") == "Chinese")
         {
             //typeLabel.GetComponentInChildren<TextMeshProUGUI>().text = itemType.ToString();
-            typeLabel.GetComponentInChildren<Image>().sprite = levelSo.langSprite[1].levels[itemLevel - 1];
+            typeLabel.transform.GetChild(0).GetComponent<Image>().sprite = levelSo.langSprite[1].levels[itemLevel - 1];
         }
         else
         {
-            typeLabel.GetComponentInChildren<Image>().sprite = levelSo.langSprite[0].levels[itemLevel - 1];
+            typeLabel.transform.GetChild(0).GetComponent<Image>().sprite = levelSo.langSprite[0].levels[itemLevel - 1];
         }
         var seq = LeanTween.sequence();
-        seq.append(LeanTween.alpha(titlePanel.GetComponent<RectTransform>(), 0.75f, 0.5f));
+
         seq.append(LeanTween.moveX(typeLabel.GetComponent<RectTransform>(), 0, 1f));
-        seq.append(LeanTween.alpha(titlePanel.GetComponent<RectTransform>(), 0f, 1f).setDestroyOnComplete(true));
         seq.append(() =>
         {
-            LeanTween.moveY(typeLabel.GetComponent<RectTransform>(), -125, 0.5f);
-            LeanTween.scale(typeLabel, new Vector3(0.5f, 0.5f, 0.5f), 0.5f).setOnComplete(() => {
+            LeanTween.moveY(typeLabel.GetComponent<RectTransform>(), -100, 0.5f).setDelay(1f);
+            LeanTween.moveX(typeLabel.GetComponent<RectTransform>(), 150, 0.5f).setDelay(1f);
+            LeanTween.scale(typeLabel, new Vector3(0.75f, 0.75f, 0.75f), 0.5f).setDelay(1f).setOnComplete(() => {
                 spawner.SetActive(true);
             });
         });
@@ -123,6 +124,33 @@ public class GameManager : MonoBehaviour
         trashLevelText.text = trashLevel.ToString();
         compostLevelText.text = compostLevel.ToString();
         recycleLevelText.text = recycleLevel.ToString();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pausePanel.activeInHierarchy)
+            {
+                UnPauseGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    public void PauseGame()
+    {
+        if (spawner.activeInHierarchy)
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    public void UnPauseGame()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void ChangeDifficulty()
@@ -244,6 +272,10 @@ public class GameManager : MonoBehaviour
         levelCompleteSound.Play();
         StopAllCoroutines();
         //levelCompletePanel.SetActive(true);
+        for (int i = 0; i < LevelItems.transform.childCount; i++)
+        {
+            LevelItems.transform.GetChild(i).GetComponent<Image>().sprite = levelSo.levelSprites[itemLevel - 1].types[i];
+        }
         OpenPanel(levelCompletePanel);
         spawner.SetActive(false);
     }
@@ -269,11 +301,13 @@ public class GameManager : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
     public void ReturnMenu()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
 
     public void NextCategory()
