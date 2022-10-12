@@ -160,8 +160,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -79}
-  m_SizeDelta: {x: 709.439, y: 218.7}
+  m_AnchoredPosition: {x: 61, y: -177}
+  m_SizeDelta: {x: 277.67, y: 209.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &36580787
 MonoBehaviour:
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 485b97cd237fc614e9c066e753cae271, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa4c2401ead27234ca97ce05c70e3a96, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.6
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.6
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2889,7 +2889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -171, y: -303}
+  m_AnchoredPosition: {x: -244, y: -177}
   m_SizeDelta: {x: 277.6628, y: 209.342}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858115842
@@ -3726,7 +3726,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.6
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -4085,7 +4085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 264, y: -303}
+  m_AnchoredPosition: {x: 362, y: -177}
   m_SizeDelta: {x: 277.67, y: 209.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1259505281
@@ -4386,7 +4386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecbbaf0ff1384c62ae369f0cfbc43a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximum: 5
+  maximum: 3
   current: 3
   mask: {fileID: 1090414694}
 --- !u!114 &1337923171
@@ -4692,7 +4692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecbbaf0ff1384c62ae369f0cfbc43a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximum: 5
+  maximum: 3
   current: 3
   mask: {fileID: 340244140}
 --- !u!114 &1497901222
@@ -4747,7 +4747,7 @@ GameObject:
   - component: {fileID: 1522275584}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5709,7 +5709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecbbaf0ff1384c62ae369f0cfbc43a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximum: 5
+  maximum: 3
   current: 3
   mask: {fileID: 597616633}
 --- !u!114 &1748287199

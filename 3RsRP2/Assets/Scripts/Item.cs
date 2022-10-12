@@ -38,7 +38,8 @@ public class Item : MonoBehaviour
                 GameManager.instance.ShakeCamera(0.1f, 0.1f);
                 GameManager.instance.IncreaseErrorCount();
                 LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.3f).setDestroyOnComplete(true);
-                Instantiate(Resources.Load("Destroy"), transform.position, transform.rotation);
+                GameObject explosion = Instantiate(Resources.Load("Explosion"), this.gameObject.transform.position, transform.rotation) as GameObject;
+                Destroy(explosion, 0.5f);
 
             }
             isClicked = true;
