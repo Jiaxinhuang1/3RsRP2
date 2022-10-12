@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
 
         minX = -boundaries.x + 4;
         maxX = boundaries.x - 1;
-        minY = -boundaries.y + 1;
+        minY = -boundaries.y + 2;
         maxY = boundaries.y - 1;
     }
 
